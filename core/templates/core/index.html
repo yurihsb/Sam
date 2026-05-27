@@ -1,0 +1,307 @@
+{% load static %}
+{% load split_filter %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardim de Ideias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+
+<div class="sidebar">
+    <div>
+        <div class="brand">Mente</div>
+        <h2 class="site-title"><a href="{% url 'index' %}" style="color: inherit; text-decoration: none;">Jardim de Ideias</a></h2>
+
+        <div class="menu-section">Tipo</div>
+        <a href="{% url 'index' %}" class="menu-item {% if not tipo_ativo and not tag_ativa %}active{% endif %}">
+            <span><i class="bi bi-circle"></i> Todos</span>
+            <span>{{ contagem.todos }}</span>
+        </a>
+        <a href="?tipo=ideia" class="menu-item {% if tipo_ativo == 'ideia' %}active{% endif %}">
+            <span><i class="bi bi-lightbulb"></i> Ideias</span>
+            <span>{{ contagem.ideia }}</span>
+        </a>
+        <a href="?tipo=tarefa" class="menu-item {% if tipo_ativo == 'tarefa' %}active{% endif %}">
+            <span><i class="bi bi-check2-square"></i> Tarefas</span>
+            <span>{{ contagem.tarefa }}</span>
+        </a>
+        <a href="?tipo=pergunta" class="menu-item {% if tipo_ativo == 'pergunta' %}active{% endif %}">
+            <span><i class="bi bi-question-circle"></i> Perguntas</span>
+            <span>{{ contagem.pergunta }}</span>
+        </a>
+        <a href="?tipo=reflexao" class="menu-item {% if tipo_ativo == 'reflexao' %}active{% endif %}">
+            <span><i class="bi bi-book"></i> Reflexões</span>
+            <span>{{ contagem.reflexao }}</span>
+        </a>
+        <a href="?tipo=insight" class="menu-item {% if tipo_ativo == 'insight' %}active{% endif %}">
+            <span><i class="bi bi-lightning"></i> Insights</span>
+            <span>{{ contagem.insight }}</span>
+        </a>
+
+        <div class="menu-section">Tags</div>
+        <a href="?tag=trabalho" class="menu-item {% if tag_ativa == 'trabalho' %}active{% endif %}"><span style="color:#38bdf8"><span class="tag-dot" style="background:#38bdf8"></span>trabalho</span></a>
+        <a href="?tag=pessoal" class="menu-item {% if tag_ativa == 'pessoal' %}active{% endif %}"><span style="color:#34d399"><span class="tag-dot" style="background:#34d399"></span>pessoal</span></a>
+        <a href="?tag=projetos" class="menu-item {% if tag_ativa == 'projetos' %}active{% endif %}"><span style="color:#c084fc"><span class="tag-dot" style="background:#c084fc"></span>projetos</span></a>
+        <a href="?tag=leituras" class="menu-item {% if tag_ativa == 'leituras' %}active{% endif %}"><span style="color:#fb7185"><span class="tag-dot" style="background:#fb7185"></span>leituras</span></a>
+        <a href="?tag=rotina" class="menu-item {% if tag_ativa == 'rotina' %}active{% endif %}"><span style="color:#fbbf24"><span class="tag-dot" style="background:#fbbf24"></span>rotina</span></a>
+    </div>
+
+    <button class="assistant-btn" id="openChatBtn">
+        <span><i class="bi bi-stars"></i> Assistente Sam</span>
+        <i class="bi bi-chevron-right"></i>
+    </button>
+</div>
+
+<div class="main-content">
+    <div class="top-bar">
+        <form method="GET" action="{% url 'index' %}" class="search-container" style="flex: 1; display: flex; align-items: center; margin: 0;">
+            <i class="bi bi-search" style="position: absolute; margin-left: 14px; color: var(--text-muted);"></i>
+            <input type="text" name="busca" class="search-input" placeholder="Buscar pensamentos e apertar Enter..." value="{{ termo_busca }}" style="width: 100%; padding-left: 40px;">
+            {% if termo_busca %}
+                <a href="{% url 'index' %}" style="position: absolute; right: 14px; color: var(--text-muted); text-decoration: none; font-size: 1.1rem;">&times;</a>
+            {% endif %}
+        </form>
+
+        <button class="view-toggle-btn active" id="btnViewGrid" title="Visualização em Grade"><i class="bi bi-grid-3x3-gap"></i></button>
+        <button class="view-toggle-btn" id="btnViewList" title="Visualização em Lista"><i class="bi bi-list-task"></i></button>
+        <button class="btn-primary" id="openModalBtn"><i class="bi bi-plus-lg"></i> Nova ideia</button>
+        <button class="view-toggle-btn" id="btnResetFilters" onclick="window.location.href='{% url 'index' %}'" title="Limpar Filtros"><i class="bi bi-sliders"></i></button>
+    </div>
+
+    <div class="content-scroll">
+        <div class="ideas-grid" id="ideasContainer">
+            {% for ideia in ideias %}
+                <div class="card-idea">
+                    {% if ideia.tipo == 'reflexao' %}
+                        <span class="card-header-badge badge-reflexao"><i class="bi bi-book"></i> Reflexão</span>
+                    {% elif ideia.tipo == 'insight' %}
+                        <span class="card-header-badge badge-insight"><i class="bi bi-lightning"></i> Insight</span>
+                    {% elif ideia.tipo == 'tarefa' %}
+                        <span class="card-header-badge badge-tarefa"><i class="bi bi-check2-square"></i> Tarefa</span>
+                    {% elif ideia.tipo == 'pergunta' %}
+                        <span class="card-header-badge badge-pergunta"><i class="bi bi-question-circle"></i> Pergunta</span>
+                    {% else %}
+                        <span class="card-header-badge badge-ideia"><i class="bi bi-lightbulb"></i> Ideia</span>
+                    {% endif %}
+
+                    <div style="position: absolute; top: 16px; right: 16px; display: flex; gap: 10px; align-items: center; z-index: 10;">
+                        <button type="button"
+                                onclick="const m = document.getElementById('editModal-{{ ideia.pk }}'); m.style.setProperty('display', 'flex', 'important'); m.classList.add('active');"
+                                style="background: none; border: none; padding: 0; margin: 0; color: #64748b; cursor: pointer; transition: color 0.2s;"
+                                onmouseover="this.style.color='#38bdf8'"
+                                onmouseout="this.style.color='#64748b'"
+                                title="Editar ideia">
+                            <i class="bi bi-pencil" style="font-size: 1rem;"></i>
+                        </button>
+
+                        <form action="{% url 'deletar_ideia' ideia.pk %}" method="POST" style="margin: 0; padding: 0; display: inline; line-height: 0;">
+                            {% csrf_token %}
+                            <button type="submit"
+                                    onclick="return confirm('Tem certeza que deseja colher/retirar esta ideia do seu jardim?')"
+                                    style="background: none; border: none; padding: 0; margin: 0; color: #64748b; cursor: pointer; transition: color 0.2s; line-height: 1;"
+                                    onmouseover="this.style.color='#f43f5e'"
+                                    onmouseout="this.style.color='#64748b'"
+                                    title="Retirar ideia">
+                                <i class="bi bi-trash" style="font-size: 1.1rem; display: block;"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    {% if ideia.fixado %}
+                        <i class="bi bi-pin-angle pin-icon" style="margin-right: 45px;"></i>
+                    {% endif %}
+
+                    {% if ideia.imagem %}
+                        <div class="card-image-wrapper" style="position: relative; overflow: hidden; border-radius: 8px; margin-bottom: 12px;">
+                            <img src="{{ ideia.imagem.url }}" class="card-image-preview" alt="Imagem do insight" style="width: 100%; display: block;">
+                            <div class="image-actions-overlay">
+                                <button type="button" class="img-action-btn" title="Visualizar Imagem" onclick="abrirLightbox('{{ ideia.imagem.url }}')">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                                <a href="{{ ideia.imagem.url }}" download class="img-action-btn" title="Baixar Imagem">
+                                    <i class="bi bi-download"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <h3 class="card-title" style="padding-right: 50px;">{{ ideia.titulo }}</h3>
+                    {% if ideia.conteudo %}
+                        <p class="card-body-text">{{ ideia.conteudo }}</p>
+                    {% endif %}
+
+                    <div class="card-footer">
+                        <div class="inline-tags">
+                            {% for tag in ideia.lista_tags %}
+                                <a href="?tag={{ tag }}" style="text-decoration: none; color: inherit; margin-right: 6px; display: inline-block;">
+                                    <span class="tag-item" style="cursor: pointer; opacity: 0.85; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">#{{ tag }}</span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div>{{ ideia.criado_em|timesince }} atrás</div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="editModal-{{ ideia.pk }}" style="display: none !important;">
+                    <div class="modal-content-box">
+                        <div class="modal-header">
+                            <h3>📝 Editar Pensamento</h3>
+                            <button type="button" class="close-modal-btn" onclick="const m = document.getElementById('editModal-{{ ideia.pk }}'); m.style.setProperty('display', 'none', 'important'); m.classList.remove('active');">&times;</button>
+                        </div>
+
+                        <form method="POST" action="{% url 'editar_ideia' ideia.pk %}" class="modal-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" name="titulo" value="{{ ideia.titulo }}" required autocomplete="off">
+                            <textarea name="conteudo" rows="5">{{ ideia.conteudo }}</textarea>
+
+                            <div style="margin: 12px 0;">
+                                <label style="display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.9rem;">Escolha a Tag:</label>
+                                <select name="tag" style="width: 100%; padding: 10px; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 6px; outline: none;">
+                                    <option value="trabalho" {% if ideia.tags == 'trabalho' %}selected{% endif %}>🔵 trabalho</option>
+                                    <option value="pessoal" {% if ideia.tags == 'pessoal' %}selected{% endif %}>🟢 pessoal</option>
+                                    <option value="projetos" {% if ideia.tags == 'projetos' %}selected{% endif %}>🟣 projetos</option>
+                                    <option value="leituras" {% if ideia.tags == 'leituras' %}selected{% endif %}>🔴 leituras</option>
+                                    <option value="rotina" {% if ideia.tags == 'rotina' %}selected{% endif %}>🟡 rotina</option>
+                                </select>
+                            </div>
+
+                            <div style="margin: 16px 0; border: 1px dashed var(--border-color); padding: 12px; border-radius: 6px;">
+                                {% if ideia.imagem %}
+                                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;" id="previewContainer-{{ ideia.pk }}">
+                                        <img src="{{ ideia.imagem.url }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+                                        <div>
+                                            <span style="font-size: 0.85rem; color: var(--text-muted); display: block;">Possui uma imagem vinculada</span>
+                                            <label style="color: #f43f5e; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                                                <input type="checkbox" name="limpar_imagem" value="true" onchange="document.getElementById('fileInput-{{ ideia.pk }}').disabled = this.checked;">
+                                                <i class="bi bi-trash"></i> Apagar imagem atual
+                                            </label>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <label style="display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.9rem;">Substituir / Adicionar Imagem:</label>
+                                <input type="file" name="imagem" id="fileInput-{{ ideia.pk }}" accept="image/*" style="background: none; padding: 5px; cursor: pointer; width: 100%;">
+                            </div>
+
+                            <div class="modal-actions">
+                                <button type="button" class="btn-secondary" onclick="const m = document.getElementById('editModal-{{ ideia.pk }}'); m.style.setProperty('display', 'none', 'important'); m.classList.remove('active');">Cancelar</button>
+                                <button type="submit" class="btn-primary">Salvar Alterações</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">
+                    <i class="bi bi-moon-stars" style="font-size: 40px; display: block; margin-bottom: 16px;"></i>
+                    Nenhum pensamento encontrado com este critério de filtro.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer-counter">
+        {{ total }} pensamentos exibidos
+    </div>
+</div>
+
+<div class="modal-overlay" id="ideaModal">
+    <div class="modal-content-box">
+        <div class="modal-header">
+            <h3>🧠 Capturar Pensamento</h3>
+            <button class="close-modal-btn" id="closeModalX">&times;</button>
+        </div>
+
+        <form method="POST" action="{% url 'index' %}" class="modal-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="titulo" placeholder="Título do insight ou ideia..." required autocomplete="off">
+            <textarea name="conteudo" rows="5" placeholder="Despeje seus pensamentos in detalhes aqui..."></textarea>
+
+            <div style="margin: 12px 0;">
+                <label style="display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.9rem;">Vincular uma Tag:</label>
+                <select name="tag" style="width: 100%; padding: 10px; background: var(--bg-main); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 6px; outline: none; cursor: pointer;">
+                    <option value="trabalho">🔵 trabalho</option>
+                    <option value="pessoal">🟢 pessoal</option>
+                    <option value="projetos" selected>🟣 projetos</option>
+                    <option value="leituras">🔴 leituras</option>
+                    <option value="rotina">🟡 rotina</option>
+                </select>
+            </div>
+
+            <div style="margin: 16px 0;">
+                <label style="display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.9rem;">Anexar uma Imagem Ilustrativa:</label>
+                <input type="file" name="imagem" accept="image/*" style="background: none; border: 1px dashed var(--border-color); padding: 10px; cursor: pointer;">
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="closeModalBtn">Cancelar</button>
+                <button type="submit" class="btn-primary">Salvar no Jardim</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="chat-overlay" id="chatOverlay">
+    <div class="chat-sidebar">
+        <div class="chat-header">
+            <h3><i class="bi bi-stars" style="color: var(--accent-purple)"></i> Assistente Sam</h3>
+            <button class="close-modal-btn" id="closeChatX">&times;</button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg sam">
+                E aí. Sou o Sam. Pode soltar os cachorros, desabafar ou mandar uma ideia pra gente debater. Se quiser que eu veja uma imagem, só mandar no clipe!
+            </div>
+        </div>
+
+        <div class="chat-footer-input">
+            <div class="img-preview-container" id="samImgPreview">
+                <img src="" id="samImgPreviewSrc" alt="Anexo">
+                <span id="samImgPreviewName">nome_do_arquivo.jpg</span>
+                <button type="button" id="samBtnRemoveImg">&times;</button>
+            </div>
+
+            <div class="chat-input-row">
+                <label for="samImageUpload" class="chat-attach-label" title="Anexar imagem">
+                    <i class="bi bi-paperclip" style="color: #aaa; font-size: 1.1rem;"></i>
+                    <input type="file" id="samImageUpload" accept="image/*" style="display: none;">
+                </label>
+
+                <input type="text" id="chatInputField" class="chat-input" placeholder="Bata um papo ou desabafe com o Sam...">
+                <button type="button" id="sendChatBtn" class="chat-btn-send">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="customLightbox" class="lightbox-overlay" onclick="fecharLightbox(event)">
+    <button class="lightbox-close">&times;</button>
+    <img id="lightboxImage" src="" alt="Visualização expandida">
+</div>
+
+<script>
+    window.CHAT_SAM_URL = "{% url 'chat_sam' %}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+
+    // Funções JS locais para controlar a Lightbox de visualização
+    function abrirLightbox(url) {
+        const lightbox = document.getElementById('customLightbox');
+        const img = document.getElementById('lightboxImage');
+        img.src = url;
+        lightbox.classList.add('active');
+    }
+
+    function fecharLightbox(e) {
+        // Só fecha se clicar no fundo escuro ou no botão de fechar
+        if (e.target.id === 'customLightbox' || e.target.classList.contains('lightbox-close')) {
+            document.getElementById('customLightbox').classList.remove('active');
+        }
+    }
+</script>
+
+<script src="{% static 'core/script.js' %}"></script>
+</body>
+</html>

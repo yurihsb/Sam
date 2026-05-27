@@ -1,0 +1,684 @@
+        :root {
+            --bg-main: #07090e;
+            --bg-sidebar: #0b0e14;
+            --bg-card: #0d131f;
+            --border-color: #161f30;
+            --text-main: #f0f4f8;
+            --text-muted: #627694;
+            --accent-blue: #38bdf8;
+            --accent-purple: #c084fc;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* BARRA LATERAL */
+        .sidebar {
+            width: 240px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 16px;
+            box-sizing: border-box;
+        }
+
+        .brand {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--accent-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .site-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 0 32px 0;
+        }
+
+        .menu-section {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .menu-item i { margin-right: 10px; }
+
+        .tag-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 12px;
+        }
+
+        .assistant-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* BARRA SUPERIOR */
+        .top-bar {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px 12px 44px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .view-toggle-btn {
+            background-color: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* GRID DE CARDS */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        .card-idea {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .card-header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .badge-reflexao { background: rgba(192, 132, 252, 0.1); color: #c084fc; }
+        .badge-insight { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+        .badge-tarefa { background: rgba(45, 212, 191, 0.1); color: #2dd4bf; }
+        .badge-ideia { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+        .badge-pergunta { background: rgba(244, 63, 94, 0.1); color: #f43f5e; }
+
+        .pin-icon {
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            line-height: 1.4;
+        }
+
+        .card-body-text {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+        }
+
+        .card-image-preview {
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(22, 31, 48, 0.5);
+            padding-top: 14px;
+        }
+
+        .inline-tags span {
+            color: var(--accent-blue);
+            margin-right: 8px;
+        }
+
+        .footer-counter {
+            padding: 16px 40px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* CONTEXTO DO MODAL FLUTUANTE */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 5, 9, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        .modal-content-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            padding: 32px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transform: translateY(-20px);
+            transition: transform 0.25s ease;
+        }
+
+        .modal-overlay.active .modal-content-box {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .close-modal-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--text-main);
+        }
+
+        /* FORMULÁRIO DO MODAL */
+        .modal-form input, .modal-form textarea {
+            width: 100%;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+            font-family: inherit;
+        }
+
+        .modal-form input:focus, .modal-form textarea:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        /* CONTAINER DO CHAT ASSISTENTE */
+        .chat-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 5, 9, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 1050;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .chat-overlay.active {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+
+        .chat-sidebar {
+            background-color: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .chat-overlay.active .chat-sidebar {
+            transform: translateX(0);
+        }
+
+        .chat-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .msg.user {
+            background-color: #2563eb;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg.sam {
+            background-color: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-footer-input {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background-color: var(--bg-sidebar);
+        }
+
+        .chat-input-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 14px;
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .chat-attach-label {
+            cursor: pointer;
+            padding: 12px;
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .chat-attach-label:hover {
+            background: var(--border-color);
+        }
+
+        .chat-btn-send {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .chat-btn-send:hover {
+            background-color: #1d4ed8;
+        }
+
+        .img-preview-container {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 6px;
+            background: var(--bg-main);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .img-preview-container img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .img-preview-container span {
+            font-size: 12px;
+            color: var(--text-muted);
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .img-preview-container button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .img-preview-container button:hover {
+            color: #f43f5e;
+        }
+
+        /* TRANSFORMAÇÃO EM MODO LISTA */
+        .view-mode-list {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+        }
+        .view-mode-list .card-idea {
+            width: 100% !important;
+        }
+        .view-toggle-btn.active {
+            background: var(--border-color) !important;
+            color: var(--text-main) !important;
+        }
+        /* --- ESTILOS DO VISUALIZADOR E DOWNLOAD DE IMAGENS --- */
+
+/* Container da imagem dentro do card */
+.card-image-wrapper:hover .image-actions-overlay {
+    opacity: 1;
+}
+
+/* Camada escura que surge com o hover */
+.image-actions-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.6); /* Sombra escura combinando com dark mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    border-radius: 8px;
+}
+
+/* Botões redondos flutuantes */
+.img-action-btn {
+    background: var(--bg-card, #1e293b);
+    color: var(--text-main, #f8fafc);
+    border: 1px solid var(--border-color, #334155);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.img-action-btn:hover {
+    transform: scale(1.1);
+    background: var(--accent-purple, #a855f7);
+    color: #ffffff;
+}
+
+/* Estrutura do Lightbox (Imagem Expandida) */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 15, 30, 0.9);
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Botão de Fechar do Lightbox */
+.lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: #ffffff;
+}
+/* --- AJUSTE DA IMAGEM NA VISUALIZAÇÃO EM LISTA --- */
+
+/* Se o seu JS adiciona a classe 'list' ou 'list-view' no container principal */
+.ideas-grid.list .card-image-wrapper,
+.ideas-grid.list-view .card-image-wrapper {
+    max-width: 120px; /* Define uma largura máxima pequena para o bloco da imagem */
+    margin-bottom: 0;  /* Remove a margem de baixo para alinhar com o texto */
+    float: left;       /* Faz o texto contornar a imagem se necessário, ou mantém compacta */
+    margin-right: 16px;
+}
+
+/* Garante que a imagem se adapte ao tamanho reduzido do wrapper */
+.ideas-grid.list .card-image-preview,
+.ideas-grid.list-view .card-image-preview {
+    height: 80px;
+    object-fit: cover; /* Não deixa a imagem distorcer ao diminuir */
+    border-radius: 6px;
+}
+
+/* Limpa a flutuação para o card não quebrar */
+.ideas-grid.list .card-idea::after,
+.ideas-grid.list-view .card-idea::after {
+    content: "";
+    display: table;
+    clear: both;
+}
