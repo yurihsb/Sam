@@ -4,26 +4,127 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e7dd46-b189-4df2-904c-0a4f03d966f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Sam.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/static/core/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/static/core/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/templates/core/build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/templates/core/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/templates/core/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/templatetags/split_filter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="d4e7dd46-b189-4df2-904c-0a4f03d966f0" name="Changes" comment="Sam A.I">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_clean.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_core.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_core_utf8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_dados.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_final.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_ideias.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_limpo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_novo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_pronto.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backup_utf8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0002_ideia_fixado_ideia_tipo_alter_ideia_conteudo_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0003_ideia_imagem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0004_userprofile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0005_ideia_arquivo_alter_ideia_tipo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0006_remove_ideia_arquivo_arquivoideia.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/0007_arquivoideia_miniatura.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jardim_midia/Captura_de_Tela_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_AUzbYla.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_MDVMzjc.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_MLfzo1a.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_NL3h24O.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_Rlowc4x.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_TRHuQsw.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_a7Bty8J.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/Curriculo_yuri_henrique_anTNrqq.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_documentos/o_que_é_gta6.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/cards_miniaturas/Curriculo_yuri_henrique_Rlowc4x.pdf_2_thumb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_Tela_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_Tela_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_Tela_2_1t4l2oW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_Tela_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_tela_2026-03-15_140532.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Captura_de_tela_2026-03-15_141928.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Curriculo_yuri_henrique.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Curriculo_yuri_henrique_eqRE5D1.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/Curriculo_yuri_henrique_iAk4esZ.pdf_2.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/download.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/upload_chat_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/upload_chat_None_2H8GgFH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/upload_chat_None_HADP8yQ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/jardim_midia/upload_chat_None_ltD6iRf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/Sam.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/config/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/config/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/config/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/config/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/config/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/migrations/0002_ideia_fixado_ideia_tipo_alter_ideia_conteudo_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/migrations/0003_ideia_imagem.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/static/core/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/static/core/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/templates/core/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/templates/core/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/templates/core/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/templatetags/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/templatetags/split_filter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/core/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/jardim_midia/Captura_de_Tela_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/Captura_de_Tela_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/Captura_de_Tela_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/Captura_de_Tela_2_1t4l2oW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/Captura_de_Tela_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/upload_chat_None.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/upload_chat_None_2H8GgFH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/upload_chat_None_HADP8yQ.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/media/jardim_midia/upload_chat_None_ltD6iRf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meu_projeto/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restaurar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/static/core/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/static/core/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/static/core/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/core/static/core/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates/core/profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="printScope" value="4" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../projeto" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -40,9 +141,13 @@
     <setting file="file://$USER_HOME$/AppData/Local/Programs/Python/Python314/Lib/importlib/__init__.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/.venv/Lib/site-packages/django/contrib/admin/sites.py" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3EA4QyEyfEvhkmsO7S8CRNjXV40" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -56,13 +161,16 @@
     "Python.manage.executor": "Run",
     "Python.tests.executor": "Run",
     "Python.views.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHELLCHECK.PATH": "C:\\Users\\yurih\\AppData\\Roaming\\JetBrains\\PyCharmCE2025.2\\plugins\\Shell Script\\shellcheck.exe",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/yurih/Desktop/Sam - Copia",
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
@@ -74,7 +182,7 @@
       <recent name="C:\Users\yurih\Desktop\Sam\core\templates\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.manage">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sam" />
       <option name="ENV_FILES" value="" />
@@ -121,8 +229,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.manage" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.manage" />
       </list>
     </recent_temporary>
   </component>
@@ -141,6 +249,15 @@
       <option name="presentableId" value="Default" />
       <updated>1779608028456</updated>
     </task>
+    <task id="LOCAL-00001" summary="Sam A.I">
+      <option name="closed" value="true" />
+      <created>1779841814812</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779841814812</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,15 +271,8 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Sam A.I" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sam A.I" />
   </component>
 </project>

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+db.sqlite3
+media/
+jardim_midia/
+staticfiles/
+venv/
+.venv/
+.idea/
+.vscode/
+.env
+*.json
+*.zip
+backup*
+meu_projeto/

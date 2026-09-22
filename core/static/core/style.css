@@ -279,18 +279,18 @@
             pointer-events: auto !important;
         }
 
-        .modal-content-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            width: 100%;
-            max-width: 500px;
-            border-radius: 12px;
-            padding: 32px;
-            box-sizing: border-box;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            transform: translateY(-20px);
-            transition: transform 0.25s ease;
-        }
+.modal-content-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 420px; /* Reduzido de 500px para 420px */
+    max-height: 85vh; /* Garante que ele não estoure a altura da tela */
+    overflow-y: auto; /* Adiciona scroll interno caso o conteúdo seja longo */
+    border-radius: 12px;
+    padding: 24px; /* Reduzido de 32px para 24px */
+    box-sizing: border-box;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
 
         .modal-overlay.active .modal-content-box {
             transform: translateY(0);
@@ -681,4 +681,665 @@
     content: "";
     display: table;
     clear: both;
+}
+
+/* =================================================_ */
+/* CORREÇÃO DEFINITIVA DA BARRA DE ROLAGEM           */
+/* =================================================_ */
+
+/* 1. Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+  background: #07090e !important; /* Mesma cor da sua variável --bg-sidebar / --bg-main */
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+  background: #334155 !important; /* Cor cinza/azulada moderna combinando com o border-color */
+  border-radius: 4px !important;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+div::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8 !important; /* Cor do accent-blue ao passar o mouse */
+}
+
+/* 2. Para Firefox */
+html, body, * {
+  scrollbar-width: thin !important;
+  scrollbar-color: #334155 #07090e !important; /* [puxador] [fundo] */
+}
+
+/* Estilização moderna para inputs de arquivo nos cards e modais */
+input[type="file"] {
+    color: var(--text-main, #f8fafc);
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+input[type="file"]::file-selector-button {
+    background: var(--bg-main, #0f172a);
+    border: 1px solid var(--border-color, #334155);
+    color: var(--text-main, #f8fafc);
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 10px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: var(--border-color, #334155);
+    border-color: var(--primary, #3b82f6);
+}
+
+
+:root {
+            --bg-main: #0b0f19;
+            --bg-card: #111827;
+            --bg-sidebar: #07090e;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+            --primary-blue: #2563eb;
+            --primary-hover: #1d4ed8;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Barra Lateral (Sidebar igual ao Jardim) */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Topo / Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .user-info {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .user-info span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Container do Formulário */
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        /* Estilização dos campos do Django Form */
+        form p {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="date"],
+        form textarea,
+        form select {
+            background-color: #0b0f19;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: var(--primary-blue);
+        }
+
+        /* Botão de Salvar igual ao "Nova ideia" */
+        .btn-save {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-save:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        .card-idea {
+    display: flex;
+    flex-direction: column;
+    height: auto !important; /* Garante que ele cresce com o conteúdo */
+    min-height: 220px;
+    position: relative;
+    /* mantenha as outras propriedades que você já tem (background, border-radius, padding, etc.) */
+}
+
+.content-scroll {
+    /* Se o container principal estiver travando a grade */
+    align-items: start; /* Impede que os cards estiquem à força para o tamanho do maior */
+}
+
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: start; /* Fundamental para que os cards tenham alturas independentes baseadas no conteúdo */
+}
+
+
+
+/* Garante que o card aceita conteúdo dinâmico e cresce proporcionalmente */
+.card-idea {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    min-height: 200px;
+    position: relative;
+    padding: 20px;
+    background: var(--bg-card, #1e293b);
+    border: 1px solid var(--border-color, #334155);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+/* Faz com que a grade alinhe os cards pelo topo, permitindo tamanhos diferentes */
+.ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+/* Estilo para imagens reais que forem anexadas */
+.card-idea img.img-fluid {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Container de arquivos/documentos anexados */
+.card-idea .file-attachment-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color, #334155);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Força a cor correta do nome do arquivo anexo para não sumir no fundo escuro */
+.card-idea .file-attachment-box span,
+.card-idea .p-2.rounded.border span {
+    color: #f8fafc !important;
+    font-size: 0.85rem !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Garante o layout limpo e alinhado do bloco de anexo */
+.card-idea .p-2.rounded.border {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #334155 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+/* Estilo Moderno para o Card de Ideias */
+.card-idea {
+    background: var(--bg-card, #1e293b); /* Ajuste para a cor de fundo do seu card */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-idea:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.3); /* Um brilho sutil ao passar o mouse (ex: azul claro) */
+    box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Badge de Tipo mais limpa e arredondada */
+.card-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Título do Card */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main, #f8fafc);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Texto do Conteúdo */
+.card-body-text {
+    font-size: 0.9rem;
+    color: var(--text-muted, #94a3b8);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limita a 4 linhas para não esticar muito o card */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Rodapé do Card (Tags e Tempo) */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto; /* Empurra sempre para o final do card */
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.75rem;
+    color: var(--text-muted, #94a3b8);
+}
+
+/* Estilo das Tags em pílula */
+.tag-item {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ================================================= */
+/* ESTILIZAÇÃO PROFISSIONAL DO MODAL                 */
+/* ================================================= */
+
+/* Caixa principal do modal compacta, centralizada e com rolagem suave */
+.modal-content-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    width: 90% !important;
+    max-width: 480px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    border-radius: 16px !important;
+    padding: 28px !important;
+    box-sizing: border-box;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Espaçamento e layout interno dos campos do modal */
+.modal-form, .modal-content-box {
+    font-family: inherit;
+}
+
+.modal-content-box input[type="text"],
+.modal-content-box textarea,
+.modal-content-box select {
+    background-color: var(--bg-main) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal-content-box input[type="text"]:focus,
+.modal-content-box textarea:focus,
+.modal-content-box select:focus {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* Bloco agrupador de mídias/anexos atual (Imagem e Arquivos) */
+.modal-content-box p:has(input[type="checkbox"]),
+.modal-content-box .image-preview-section {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--border-color);
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Alinhamento perfeito do texto e imagem atual */
+.modal-content-box p:has(input[type="checkbox"]) label,
+.modal-content-box label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Padronização moderna de todos os Checkboxes do modal */
+.modal-content-box input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px !important;
+    height: 18px !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 5px !important;
+    background-color: var(--bg-main) !important;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    margin: 0 !important;
+    flex-shrink: 0;
+}
+
+.modal-content-box input[type="checkbox"]:hover {
+    border-color: #f43f5e;
+}
+
+.modal-content-box input[type="checkbox"]:checked {
+    background-color: #f43f5e !important;
+    border-color: #f43f5e !important;
+}
+
+.modal-content-box input[type="checkbox"]:checked::after {
+    content: "✕";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Estilização limpa para os botões de Ação Inferiores (Cancelar / Salvar) */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 12px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 16px;
+}
+
+.modal-actions .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.modal-actions .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    border-color: var(--text-muted);
+}
+
+.modal-actions .btn-primary,
+.modal-actions button[type="submit"] {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.modal-actions .btn-primary:hover,
+.modal-actions button[type="submit"]:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ================================================= */
+/* AJUSTE FINO: ARQUIVOS ANEXADOS E INPUT FILE       */
+/* ================================================= */
+
+/* Caixa do arquivo anexado (PDF/Documento) */
+.modal-content-box .p-2.rounded.border,
+.modal-content-box div:has(input[name*="clear"]),
+.modal-content-box .file-attachment-box {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px 16px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    margin-top: 8px !important;
+}
+
+/* Nome do arquivo limpo e sem estourar o layout */
+.modal-content-box .p-2.rounded.border span,
+.modal-content-box div span {
+    color: var(--text-main) !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+}
+
+/* Alinhamento da linha "Remover" do arquivo */
+.modal-content-box label:has(input[name*="clear"]) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.modal-content-box label:has(input[name*="clear"]):hover {
+    color: #f43f5e;
+}
+
+/* Caixa de "Substituir / Adicionar Imagem" mais elegante */
+.modal-content-box input[type="file"] {
+    background: var(--bg-main) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 8px !important;
+    border-radius: 10px !important;
+    color: var(--text-muted) !important;
+    font-size: 0.85rem !important;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100% !important;
+}
+
+/* Botão interno do input file (Escolher arquivo) */
+.modal-content-box input[type="file"]::file-selector-button {
+    background-color: var(--bg-sidebar) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+    padding: 8px 14px !important;
+    border-radius: 6px !important;
+    font-weight: 500;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.modal-content-box input[type="file"]::file-selector-button:hover {
+    background-color: var(--border-color) !important;
+    border-color: var(--accent-blue) !important;
+}
+
+.badge-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #fff; /* Garante contraste com a cor de fundo dinâmica */
+    font-weight: 500;
+    margin: 4px;
+}
+
+.tag-counter {
+    background-color: rgba(0, 0, 0, 0.2); /* Fundo escuro sutil para destacar o número */
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px; /* Espaçamento à direita do nome da tag */
+    display: inline-block;
+    min-width: 20px;
+    text-align: center;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tag-counter {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
