@@ -1,6 +1,9 @@
+Markdown
 # 🌿 Jardim de Ideias & Assistente Sam
 
 O **Jardim de Ideias** é uma aplicação web desenvolvida em **Django** projetada para centralizar, organizar e gerenciar pensamentos, tarefas, perguntas, reflexões e insights. O grande diferencial do projeto é o **Sam**, um assistente de inteligência artificial de elite e altamente autônomo integrado diretamente ao chat para gerenciar dados, criar relatórios em Excel e documentos Word por meio de chamadas de ferramentas (*Function Calling*).
+
+> ⚠️ **Aviso de Desenvolvimento:** Este projeto ainda **não está 100% pronto**. Novas funcionalidades, melhorias na interface e ajustes de estabilidade estão sendo implementados continuamente.
 
 ---
 
@@ -34,8 +37,7 @@ Certifique-se de ter o **Python** instalado em sua máquina. Siga os passos abai
    ```bash
    git clone [https://github.com/seu-usuario/jardim-de-ideias.git](https://github.com/seu-usuario/jardim-de-ideias.git)
    cd jardim-de-ideias
-
-   Crie e ative um ambiente virtual:
+Crie e ative um ambiente virtual:
 
 Bash
 python -m venv venv
@@ -81,9 +83,3 @@ Abra o chat com o assistente na interface e teste comandos autônomos como:
 
 🛡️ Licença
 Este projeto é de uso livre para estudos, portfólios e desenvolvimento pessoal.
-
-
----
-
-### Dica para salvar no projeto:
-Basta criar um arquivo chamado exatamente **`README.md`** na raiz do seu projeto (na mesma pasta onde fi
